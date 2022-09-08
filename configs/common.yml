@@ -1,0 +1,17 @@
+port: 9010
+
+postgres:
+  user: $DB_USER$
+  database: $DB_NAME$
+  password: $DB_PASS$
+  host: 192.168.1.53
+  port: 5432
+  idleTimeoutMillis: 1000
+  min: 3
+  max: 10
+  debug: false
+
+bot_token: $BOT_TOKEN$
+
+istest: true
+
