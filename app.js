@@ -1,5 +1,6 @@
 require('./modules/exceptions');
 require('./configs');
+require('./modules/telegram');
 
 
 return false;
