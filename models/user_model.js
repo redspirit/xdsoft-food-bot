@@ -8,6 +8,10 @@ let getById = (id) => {
     return db('users').where({id}).first();
 }
 
+let getByTelegram = (id) => {
+    return db('users').where({tg_id: id}).first();
+}
+
 
 let createUser = (tgId, login, name) => {
 
@@ -25,19 +29,15 @@ let createUser = (tgId, login, name) => {
 
 }
 
-const updateUsername = (id, username) => {
-    return db('users').where({id}).update({username});
-};
-
-const updateEmail = (id, email) => {
-    return db('users').where({id}).update({email});
+const setIsClosed = (id, val) => {
+    return db('users').where({id}).update({is_closed: val});
 };
 
 
 
 module.exports = {
     createUser,
-    updateUsername,
-    updateEmail,
-    getById
+    getById,
+    getByTelegram,
+    setIsClosed,
 };

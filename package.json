@@ -18,16 +18,22 @@
   "homepage": "https://github.com/redspirit/xdsoft-food-bot#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "axios-cookiejar-support": "^4.0.3",
     "cheerio": "^1.0.0-rc.12",
     "console-stamp": "^3.0.6",
     "express": "^4.18.1",
+    "fetch": "^1.1.0",
     "js-yaml": "^4.1.0",
     "knex": "^2.3.0",
     "minimist": "^1.2.6",
     "moment": "^2.29.4",
     "pg": "^8.8.0",
+    "request": "^2.88.2",
     "socks-proxy-agent": "^7.0.0",
     "telegraf": "^4.9.1",
+    "telegraf-cmd-args": "^1.0.2",
+    "tough-cookie": "^4.1.2",
+    "tough-cookie-file-store": "^2.0.3",
     "underscore": "^1.13.4",
     "uuid": "^9.0.0"
   }
