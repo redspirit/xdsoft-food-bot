@@ -1,6 +1,10 @@
 const Router = require('./router');
+const axios = require('axios');
+const sharp = require('sharp');
+const parser2 = require('../../modules/parser2');
 const userModel = require('../../models/user_model');
 const router = new Router();
+// const Extra = require('telegraf/extra');
 
 router.on('/start', async (ctx, arg, params) => {
 
@@ -22,14 +26,21 @@ router.on('/help', (ctx, arg, params) => {
 });
 
 
-router.on('/hello', (ctx, arg, params) => {
+router.on('/page', async (ctx, arg, params) => {
 
-    console.log('arg', arg);
-    console.log('params', params);
+    let props = await parser2.getPage(arg);
+    console.log(props);
 
-    ctx.reply('hello from my router');
+    ctx.replyWithPhoto(
+        {url: props.image},
+        {caption: `*${props.title}* \nЦена: ${props.price} руб\nДоступно: ${props.inStock || 'неизвестно'}`}
+    )
+
 });
 
+router.on('/test', async (ctx, arg, params) => {
+
+});
 
 
 module.exports = router;

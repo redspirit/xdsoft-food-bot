@@ -1,5 +1,7 @@
-const cheerio = require('cheerio');
+
 const axios = require('axios');
+const https = require('https');
+const fs = require('fs');
 const { SocksProxyAgent } = require('socks-proxy-agent');
 // const $ = cheerio.load('<h2 class="title">Hello world</h2>');
 // $('h2.title').text('Hello there!');
@@ -23,7 +25,12 @@ const client = wrapper(axios.create({ jar }));
 // http://free-proxy.cz/ru/proxylist/country/RU/socks/ping/all
 let proxyHost = '46.23.155.18';
 let proxyPort = '62638';
-const httpsAgent = new SocksProxyAgent(`socks4://${proxyHost}:${proxyPort}`);
+// const httpsAgent = new SocksProxyAgent(`socks4://${proxyHost}:${proxyPort}`);
+const httpsAgent = new https.Agent({
+    // cert: fs.readFileSync('client.crt'),
+    // key: fs.readFileSync('client.key'),
+    ca: fs.readFileSync('modules/ca-certs.pem'),
+});
 
 let headers = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -54,7 +61,7 @@ const getInfo = async (url) => {
         method: 'GET',
         url: url,
         headers,
-        // httpsAgent,
+        httpsAgent,
         withCredentials: true
     }).then((result) => {
 
